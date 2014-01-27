@@ -1,0 +1,196 @@
+Use of uninitialized value $version in concatenation (.) or string at ./chtcinnerwrapper line 103, <MA> line 220.
+What do we have for version? <>
+--version should be used for Matlab, R and Python
+Controls: <do.sh>
+Use of uninitialized value $tarball in concatenation (.) or string at ./chtcinnerwrapper line 280.
+Use of uninitialized value $installfrom in concatenation (.) or string at ./chtcinnerwrapper line 280.
+Running: <Other   sh 26937 do.sh>
+Running here: e078.chtc.wisc.edu
+_CONDOR_ANCESTOR_11362=11373:1382990694:1213757758
+_CONDOR_ANCESTOR_19520=27742:1381611774:826243156
+_CONDOR_ANCESTOR_27742=11362:1382990661:837014791
+TEMP=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_SCRATCH_DIR=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_SLOT=slot1_22
+TMPDIR=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_JOB_PIDS=
+TMP=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_JOB_AD=/var/lib/condor/execute/slot1/dir_11362/.job.ad
+_CONDOR_JOB_IWD=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_MACHINE_AD=/var/lib/condor/execute/slot1/dir_11362/.machine.ad
+PATH=/usr/local/bin:/usr/kerberos/bin:/usr/bin:/bin
+
+
+ ******** My Verison = <<<<1.08>>>> 
+
+Starting to run <sh> <26937> <do.sh>
+Use of uninitialized value $tarball in concatenation (.) or string at ./chtcinnerwrapper line 306.
+Use of uninitialized value $installfrom in concatenation (.) or string at ./chtcinnerwrapper line 306.
+Using <Other> <> <>
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/md0             908589600 157216820 751372780  18% /var/lib/condor/execute
+/var/lib/condor/execute/slot1/dir_11362
+URL: <<http://proxy.chtc.wisc.edu/SQUID/>>
+Curl attempt:<curl -H "Pragma:" --fail -o SLIBS1.tar.gz http://proxy.chtc.wisc.edu/SQUID/SLIBS1.tar.gz>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 4593k  100 4593k    0     0   100M      0 --:--:-- --:--:-- --:--:--  101M
+Curl result <0>
+TYPE = Other, checking for operating system dependent bin for<sl6>
+In HandleSl5Sl6Bins for OS <sl6> ******************************************
+/var/lib/condor/execute/slot1/dir_11362
+AuditLog.26937
+CURLTIME_11373
+ChtcWrapper26937.out
+SLIBS1.tar.gz
+SS
+_condor_stderr
+_condor_stdout
+chtcinnerwrapper
+condor_exec.exe
+cuneiform-page-0001.html
+cuneiform-page-0002.html
+cuneiform-page-0003.html
+cuneiform-page-0004.html
+cuneiform-page-0005.html
+cuneiform-page-0006.html
+cuneiform-page-0007.html
+cuneiform-page-0008.html
+cuneiform-page-0009.html
+cuneiform-page-0010.html
+cuneiform-page-0011.html
+cuneiform-page-0012.html
+cuneiform-page-0013.html
+cuneiform-page-0014.html
+cuneiform-page-0015.html
+cuneiform-page-0016.html
+cuneiform-page-0017.html
+cuneiform-page-0018.html
+cuneiform-page-0019.html
+cuneiform-page-0020.html
+cuneiform-page-0021.html
+cuneiform-page-0022.html
+cuneiform-page-0023.html
+cuneiform-page-0024.html
+cuneiform-page-0025.html
+cuneiform-page-0026.html
+cuneiform-page-0027.html
+cuneiform-page-0028.html
+cuneiform_fonttype
+do.sh
+input.text
+looking to untar <sl6bin.tar.gz> ********************************************
+looking for bin <sl6bin> ********************************************
+HASHBIN has value ZERO ???????????????? *************************
+version not defined. No runtime needed. Moving on.
+SANDBOX SPACE:
+21M	.
+Tar file to extract is <26937.tar.gz>
+Use of uninitialized value in concatenation (.) or string at ./chtcinnerwrapper line 670.
+Running here: e078.chtc.wisc.edu
+_CONDOR_ANCESTOR_11362=11373:1382990694:1213757758
+_CONDOR_ANCESTOR_19520=27742:1381611774:826243156
+_CONDOR_ANCESTOR_27742=11362:1382990661:837014791
+TEMP=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_SCRATCH_DIR=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_SLOT=slot1_22
+TMPDIR=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_JOB_PIDS=
+TMP=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_JOB_AD=/var/lib/condor/execute/slot1/dir_11362/.job.ad
+_CONDOR_JOB_IWD=/var/lib/condor/execute/slot1/dir_11362
+_CONDOR_MACHINE_AD=/var/lib/condor/execute/slot1/dir_11362/.machine.ad
+PATH=.:/usr/local/bin:/usr/kerberos/bin:/usr/bin:/bin
+LD_LIBRARY_PATH=/var/lib/condor/execute/slot1/dir_11362/SS:
+SANDBOX SPACE:
+21M	.
+total 7284
+-rw-r--r-- 1 slot22 slot22     115 Oct 28 15:04 AuditLog.26937
+-rw-r--r-- 1 slot22 slot22     118 Oct 28 15:04 CURLTIME_11373
+-rw-r--r-- 1 slot22 slot22    4287 Oct 28 15:04 ChtcWrapper26937.out
+-rw-r--r-- 1 slot22 slot22 4703655 Oct 28 15:04 SLIBS1.tar.gz
+drwxr-xr-x 2 slot22 slot22    4096 Oct 25  2011 SS
+-rw-r--r-- 1 slot22 slot22     317 Oct 28 15:04 _condor_stderr
+-rw-r--r-- 1 slot22 slot22     864 Oct 28 15:04 _condor_stdout
+-rwxr-xr-x 1 slot22 slot22   35251 Oct 28 15:04 chtcinnerwrapper
+-rwxr-xr-x 1 slot22 slot22    5393 Oct 28 15:04 condor_exec.exe
+-rwxr-xr-x 1 slot22 slot22   84519 Oct 28 15:04 cuneiform-page-0001.html
+-rwxr-xr-x 1 slot22 slot22   41716 Oct 28 15:04 cuneiform-page-0002.html
+-rwxr-xr-x 1 slot22 slot22   32539 Oct 28 15:04 cuneiform-page-0003.html
+-rwxr-xr-x 1 slot22 slot22   83937 Oct 28 15:04 cuneiform-page-0004.html
+-rwxr-xr-x 1 slot22 slot22  109739 Oct 28 15:04 cuneiform-page-0005.html
+-rwxr-xr-x 1 slot22 slot22   79662 Oct 28 15:04 cuneiform-page-0006.html
+-rwxr-xr-x 1 slot22 slot22   23982 Oct 28 15:04 cuneiform-page-0007.html
+-rwxr-xr-x 1 slot22 slot22   19264 Oct 28 15:04 cuneiform-page-0008.html
+-rwxr-xr-x 1 slot22 slot22   41355 Oct 28 15:04 cuneiform-page-0009.html
+-rwxr-xr-x 1 slot22 slot22   89718 Oct 28 15:04 cuneiform-page-0010.html
+-rwxr-xr-x 1 slot22 slot22   30880 Oct 28 15:04 cuneiform-page-0011.html
+-rwxr-xr-x 1 slot22 slot22   27628 Oct 28 15:04 cuneiform-page-0012.html
+-rwxr-xr-x 1 slot22 slot22   64268 Oct 28 15:04 cuneiform-page-0013.html
+-rwxr-xr-x 1 slot22 slot22    1818 Oct 28 15:04 cuneiform-page-0014.html
+-rwxr-xr-x 1 slot22 slot22   40683 Oct 28 15:04 cuneiform-page-0015.html
+-rwxr-xr-x 1 slot22 slot22   66916 Oct 28 15:04 cuneiform-page-0016.html
+-rwxr-xr-x 1 slot22 slot22    7975 Oct 28 15:04 cuneiform-page-0017.html
+-rwxr-xr-x 1 slot22 slot22   33361 Oct 28 15:04 cuneiform-page-0018.html
+-rwxr-xr-x 1 slot22 slot22    5822 Oct 28 15:04 cuneiform-page-0019.html
+-rwxr-xr-x 1 slot22 slot22   15615 Oct 28 15:04 cuneiform-page-0020.html
+-rwxr-xr-x 1 slot22 slot22    5103 Oct 28 15:04 cuneiform-page-0021.html
+-rwxr-xr-x 1 slot22 slot22   11797 Oct 28 15:04 cuneiform-page-0022.html
+-rwxr-xr-x 1 slot22 slot22  118276 Oct 28 15:04 cuneiform-page-0023.html
+-rwxr-xr-x 1 slot22 slot22   86148 Oct 28 15:04 cuneiform-page-0024.html
+-rwxr-xr-x 1 slot22 slot22  100477 Oct 28 15:04 cuneiform-page-0025.html
+-rwxr-xr-x 1 slot22 slot22  109522 Oct 28 15:04 cuneiform-page-0026.html
+-rwxr-xr-x 1 slot22 slot22  125277 Oct 28 15:04 cuneiform-page-0027.html
+-rwxr-xr-x 1 slot22 slot22  119158 Oct 28 15:04 cuneiform-page-0028.html
+drwxr-xr-x 2 slot22 slot22      31 Oct 28 15:04 cuneiform_fonttype
+-rw-r--r-- 1 slot22 slot22      94 Oct 28 15:04 do.sh
+-rwxr-xr-x 1 slot22 slot22  864769 Oct 28 15:04 input.text
+chmod: cannot access `sh': No such file or directory
+/bin/sleep
+about to execute <<sh do.sh>>
+SANDBOX SPACE:
+25M	.
+Done Running 26937 /var/lib/condor/execute/slot1/dir_11362 Result was <0>
+Results are:total 7840
+-rw-r--r-- 1 slot22 slot22     262 Oct 28 15:05 AuditLog.26937
+-rw-r--r-- 1 slot22 slot22     118 Oct 28 15:04 CURLTIME_11373
+-rw-r--r-- 1 slot22 slot22    7286 Oct 28 15:05 ChtcWrapper26937.out
+-rw-r--r-- 1 slot22 slot22 4703655 Oct 28 15:04 SLIBS1.tar.gz
+drwxr-xr-x 2 slot22 slot22    4096 Oct 25  2011 SS
+-rw-r--r-- 1 slot22 slot22     317 Oct 28 15:04 _condor_stderr
+-rw-r--r-- 1 slot22 slot22     864 Oct 28 15:04 _condor_stdout
+-rwxr-xr-x 1 slot22 slot22   35251 Oct 28 15:04 chtcinnerwrapper
+-rwxr-xr-x 1 slot22 slot22    5393 Oct 28 15:04 condor_exec.exe
+-rwxr-xr-x 1 slot22 slot22   84519 Oct 28 15:05 cuneiform-page-0001.html
+-rwxr-xr-x 1 slot22 slot22   41716 Oct 28 15:05 cuneiform-page-0002.html
+-rwxr-xr-x 1 slot22 slot22   32539 Oct 28 15:05 cuneiform-page-0003.html
+-rwxr-xr-x 1 slot22 slot22   83937 Oct 28 15:05 cuneiform-page-0004.html
+-rwxr-xr-x 1 slot22 slot22  109739 Oct 28 15:05 cuneiform-page-0005.html
+-rwxr-xr-x 1 slot22 slot22   79662 Oct 28 15:05 cuneiform-page-0006.html
+-rwxr-xr-x 1 slot22 slot22   23982 Oct 28 15:05 cuneiform-page-0007.html
+-rwxr-xr-x 1 slot22 slot22   19264 Oct 28 15:05 cuneiform-page-0008.html
+-rwxr-xr-x 1 slot22 slot22   41355 Oct 28 15:05 cuneiform-page-0009.html
+-rwxr-xr-x 1 slot22 slot22   89718 Oct 28 15:05 cuneiform-page-0010.html
+-rwxr-xr-x 1 slot22 slot22   30880 Oct 28 15:05 cuneiform-page-0011.html
+-rwxr-xr-x 1 slot22 slot22   27628 Oct 28 15:05 cuneiform-page-0012.html
+-rwxr-xr-x 1 slot22 slot22   64268 Oct 28 15:05 cuneiform-page-0013.html
+-rwxr-xr-x 1 slot22 slot22    1818 Oct 28 15:05 cuneiform-page-0014.html
+-rwxr-xr-x 1 slot22 slot22   40683 Oct 28 15:05 cuneiform-page-0015.html
+-rwxr-xr-x 1 slot22 slot22   66916 Oct 28 15:05 cuneiform-page-0016.html
+-rwxr-xr-x 1 slot22 slot22    7975 Oct 28 15:05 cuneiform-page-0017.html
+-rwxr-xr-x 1 slot22 slot22   33361 Oct 28 15:05 cuneiform-page-0018.html
+-rwxr-xr-x 1 slot22 slot22    5822 Oct 28 15:05 cuneiform-page-0019.html
+-rwxr-xr-x 1 slot22 slot22   15615 Oct 28 15:05 cuneiform-page-0020.html
+-rwxr-xr-x 1 slot22 slot22    5103 Oct 28 15:05 cuneiform-page-0021.html
+-rwxr-xr-x 1 slot22 slot22   11797 Oct 28 15:05 cuneiform-page-0022.html
+-rwxr-xr-x 1 slot22 slot22  118276 Oct 28 15:05 cuneiform-page-0023.html
+-rwxr-xr-x 1 slot22 slot22   86148 Oct 28 15:05 cuneiform-page-0024.html
+-rwxr-xr-x 1 slot22 slot22  100477 Oct 28 15:05 cuneiform-page-0025.html
+-rwxr-xr-x 1 slot22 slot22  109522 Oct 28 15:05 cuneiform-page-0026.html
+-rwxr-xr-x 1 slot22 slot22  125277 Oct 28 15:05 cuneiform-page-0027.html
+-rwxr-xr-x 1 slot22 slot22  119158 Oct 28 15:05 cuneiform-page-0028.html
+drwxr-xr-x 2 slot22 slot22      31 Oct 28 15:04 cuneiform_fonttype
+-rw-r--r-- 1 slot22 slot22      94 Oct 28 15:04 do.sh
+-rw-r--r-- 1 slot22 slot22  563461 Oct 28 15:05 fonts.text
+-rwxr-xr-x 1 slot22 slot22  864769 Oct 28 15:05 input.text
+drwxr-xr-x 2 slot22 slot22    4096 Oct 28 15:04 rs
