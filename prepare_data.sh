@@ -9,33 +9,33 @@ DB_PORT=5432
 cd `dirname $0`
 BASE_DIR=`pwd`
 
-dropdb -p $DB_PORT -U $DB_USER deepdive_small
+dropdb -p $DB_PORT -U $DB_USER deepdive_small2
 
-createdb -p $DB_PORT -U $DB_USER deepdive_small
+createdb -p $DB_PORT -U $DB_USER deepdive_small2
 
 psql -p $DB_PORT -U $DB_USER -c "drop schema if exists public cascade; create schema public;" $DB_NAME
 #
 
-#psql -p $DB_PORT -U $DB_USER -c "delete from docids;"             $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from documents;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from docids;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from documents;"             $DB_NAME
 
-#psql -p $DB_PORT -U $DB_USER -c "delete from entities_candidates;"    $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from entities;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from entities_candidates;"    $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from entities;"             $DB_NAME
 
-#psql -p $DB_PORT -U $DB_USER -c "delete from relation_candidates;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relation_candidates;"             $DB_NAME
 
-#psql -p $DB_PORT -U $DB_USER -c "delete from relations_taxonomy;"             $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from relations_formation;"             $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationtemporal;"             $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationlocation;"             $DB_NAME
-
-
-#psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationtemporal_global;"             $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationlocation_global;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relations_taxonomy;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relations_formation;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationtemporal;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationlocation;"             $DB_NAME
 
 
-#psql -p $DB_PORT -U $DB_USER -c "delete from interval_containments;"             $DB_NAME
-#psql -p $DB_PORT -U $DB_USER -c "delete from interval_not_that_possible;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationtemporal_global;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from relations_formationlocation_global;"             $DB_NAME
+
+
+psql -p $DB_PORT -U $DB_USER -c "delete from interval_containments;"             $DB_NAME
+psql -p $DB_PORT -U $DB_USER -c "delete from interval_not_that_possible;"             $DB_NAME
 
 
 psql -p $DB_PORT -U $DB_USER -c "CREATE TABLE docids (id bigserial primary key,   \
