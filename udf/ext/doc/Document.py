@@ -96,6 +96,18 @@ class Document:
                 self.fontshash[box.__repr__()] = {"type":type, "box":box, "content":content}
         except:
             donothing = True
+
+
+        try:
+             for l in open(filepath + "/fonts2.text"):
+                (type, page, l, t, r, b, content) = l.rstrip('\n').split('\t')
+                box = Box("p%sl%st%sr%sb%s"%(page, l, t, r, b))
+                page = int(page)
+                if page not in self.fonts: self.fonts[page] = []
+                self.fonts[page].append({"type":type, "box":box, "content":content})
+                self.fontshash[box.__repr__()] = {"type":type, "box":box, "content":content}
+        except:
+            donothing = True
         		
         ranks = {"subspecies":1,"species":2,"subgenus":3,"genus":4,"subtribe":5,"tribe":6,"subfamily":7,"family":8,"group":9,"superfamily":10,"infraorder":11,"suborder":12,"order":13,"superorder":14,"infraclass":15,"subclass":16,"class":17,"superclass":18,"subphylum":19,"phylum":20,"superphylum":21,"subkingdom":22,"kingdom":23,"superkingdom":24}
         for r in ranks.keys():
