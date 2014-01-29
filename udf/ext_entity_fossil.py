@@ -258,42 +258,46 @@ for row in get_inputs():
 										obvious_fossil_name[ss[0].lower()] = "genus"
 										entity = Entity("genus", ss[0].lower(), sent.words[start:end-1])
 										doc.push_entity(entity)
-					
-							cleanup = []
-							inpars = []
-							inpar = False
-							for s in ssl:
-								if '(' in s:
-									inpar = True
-									continue
-								if ')' in s:
-									inpar = False
-									continue
-								if inpar == False:
-									cleanup.append(s)
-								else:
-									inpars.append(s)
+				
+						cleanup = []
+						inpars = []
+						inpar = False
+						for s in ssl:
+							if '(' in s:
+								inpar = True
+								continue
+							if ')' in s:
+								inpar = False
+								continue
+							if inpar == False:
+								cleanup.append(s)
+							else:
+								inpars.append(s)
 
-							if len(inpars) == 1 and inpars[0] in dict_fossils and 'genus' in dict_fossils[inpars[0]]:
-								if nc == 1:
-									if len(cleanup) == 1 and ss[0] != '(':
-										if cleanup[0] in dict_fossils and 'genus' in dict_fossils[cleanup[0]]:
-											obvious_fossil_name[" ".join(ssl)] = "subgenus!"
-											entity = Entity("subgenus!", " ".join(ssl), sent.words[start:end])
-											doc.push_entity(entity)
-								
-								if nc == 1 and len(cleanup) == 2:
+
+						if len(inpars) > 0:
+							log(ssl)
+
+						if len(inpars) == 1 and inpars[0] in dict_fossils and 'genus' in dict_fossils[inpars[0]]:
+							if nc == 1:
+								if len(cleanup) == 1 and ss[0] != '(':
 									if cleanup[0] in dict_fossils and 'genus' in dict_fossils[cleanup[0]]:
-										if cleanup[1] in dict_species_lastword and cleanup[1] not in dict_english:
-
-											obvious_fossil_name[" ".join(ssl)] = "species"
-											entity = Entity("species", " ".join(ssl), sent.words[start:end])
-											doc.push_entity(entity)
-
-											obvious_fossil_name[cleanup[0]] = "genus"
-											entity = Entity("genus", cleanup[0], sent.words[start:end-1])
-											doc.push_entity(entity)
+										obvious_fossil_name[" ".join(ssl)] = "subgenus!"
+										entity = Entity("subgenus!", " ".join(ssl), sent.words[start:end])
+										doc.push_entity(entity)
 							
+							if nc == 1 and len(cleanup) == 2:
+								if cleanup[0] in dict_fossils and 'genus' in dict_fossils[cleanup[0]]:
+									if cleanup[1] in dict_species_lastword and cleanup[1] not in dict_english:
+
+										obvious_fossil_name[" ".join(ssl)] = "species"
+										entity = Entity("species", " ".join(ssl), sent.words[start:end])
+										doc.push_entity(entity)
+
+										obvious_fossil_name[cleanup[0]] = "genus"
+										entity = Entity("genus", cleanup[0], sent.words[start:end-1])
+										doc.push_entity(entity)
+						
 
 	possible_shortphrase = {}
 	for name in obvious_fossil_name:
