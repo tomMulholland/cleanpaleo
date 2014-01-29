@@ -14,7 +14,7 @@ for row in get_inputs():
 		if kk != 'id':
 			o[kk] = row[key]
 
-        #o['is_correct'] = None
+        o['is_correct'] = None
 
 	print json.dumps(o)
 

@@ -89,19 +89,17 @@ class SectionHeaderRealtionExtraction:
                 for e1 in doc.entities[sentid]:
                     for e2 in doc.entities[sentid]:
                         if e1.type in ranks and e2.type in ranks:
-                            if ranks[e1.type] < ranks[e2.type] and 'species' not in e1.type and e1.type in doc.sents[sentid].__repr__().lower() and e2.type in doc.sents[sentid].__repr__().lower() :
+                            if ranks[e1.type] < ranks[e2.type] and 'species' not in e1.type and e1.type.replace('!', '') in doc.sents[sentid].__repr__().lower() and e2.type.replace('!', '') in doc.sents[sentid].__repr__().lower() :
                                 doc.push_relation(Relation("TAXONOMY", e1, e2, "[SYSTEMATIC PALEONTOLOGY SECTION HEADER TYPE 1]"))
 
                 for j in range(i+1, len(goodsents)):
                     sentid2 = goodsents[j]["sentid"]
                     isgood2 = goodsents[j]["isgood"]
 
- 
-
                     if isgood2 == True:
                         for e1 in doc.entities[sentid2]:
                             for e2 in doc.entities[sentid]:
-                                if e1.type in ranks and e2.type in ranks:
+                                if e1.type in ranks and e2.type in ranks and e1.type.replace('!', '') in doc.sents[sentid2].__repr__().lower() and e2.type.replace('!', '') in doc.sents[sentid].__repr__().lower():
                                     if ranks[e1.type] < ranks[e2.type] and 'species' not in e1.type:
                                     #if e2.entity == 'anthracomarti':
                                     #    import pdb
@@ -219,7 +217,7 @@ class SectionHeaderRealtionExtraction:
                             if exists_center == True and sentid2-sentid >= 5:
                                 break
 
-                            if sent2.words[0].word in ['Discussion', 'Material', 'Remarks', 'Matericzl', 'Remczrks', 'Type', 'Revised', 'Included', 'Diagnosis', 'Referred', '']:
+                            if sent2.words[0].word in ['Description', 'Discussion', 'Material', 'Remarks', 'Matericzl', 'Remczrks', 'Type', 'Revised', 'Included', 'Diagnosis', 'Referred', '']:
                                 break
 
                             firstentity_index2 = 10000
@@ -231,7 +229,7 @@ class SectionHeaderRealtionExtraction:
                                     continue
                                 hh[e.entity] = 1
 
-                                if ('species' in e.type and 'species' in firstentity.type) or ('genus' in e.type and 'genus' in firstentity.type and e.words[0].left_margin < 40):
+                                if ('species' in e.type and 'species' in firstentity.type): # or ('genus' in e.type and 'genus' in firstentity.type and e.words[0].left_margin < 40):
                                     firstentity_index2 = e.words[0].insent_id
                                     firstentity2 = e
 
@@ -239,7 +237,7 @@ class SectionHeaderRealtionExtraction:
                                         doesbreak = True
                                         break
 
-                                    if firstentity2.words[0].centered == False and firstentity2.words[0].followed == True and (firstentity2.words[0].left_margin < 100 or firstentity_index2 < 3):
+                                    if firstentity2.words[0].centered == False and firstentity2.words[0].followed == True and firstentity2.words[0].font != "" and (firstentity2.words[0].left_margin < 100 or firstentity_index2 < 3):
 
                                         allleft = True
                                         for w in sent2.words:

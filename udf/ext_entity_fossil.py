@@ -114,9 +114,13 @@ for row in get_inputs():
 	obvious_fossil_name = {}
 	candiate_new_fossil_name = {}
 	
+	history_persent = {}
+
 	started = False
 	ended = False
 	for sent in doc.sents:
+
+		history_persent[sent.sentid] = {}
 
 		started = True
 
@@ -212,6 +216,7 @@ for row in get_inputs():
 					if lphrase in dict_fossils:
 					
 						obvious_fossil_name[lphrase] = dict_fossils[lphrase]
+						history_persent[sent.sentid][lphrase] = 1
 						if prerank != None:
 							entity = Entity(prerank + "!", lphrase, sent.words[start:end])
 							entity.genus_reso = genus_reso
@@ -224,9 +229,11 @@ for row in get_inputs():
 						
 		 				if prerank != None:
 							obvious_fossil_name[lphrase] = prerank
+							history_persent[sent.sentid][lphrase] = 1
 							entity = Entity(prerank + "!", lphrase, sent.words[start:end])
 						else:
 							obvious_fossil_name[lphrase] = "family"
+							history_persent[sent.sentid][lphrase] = 1
 							entity = Entity("family" ,lphrase, sent.words[start:end])
 							doc.push_entity(entity)
 					else:
@@ -240,12 +247,14 @@ for row in get_inputs():
 								if ssl[1] in dict_species_lastword and ssl[1] not in dict_english:
 								
 									obvious_fossil_name[lphrase] = "species"
+									history_persent[sent.sentid][lphrase] = 1
 									entity = Entity("species", lphrase, sent.words[start:end])
 									doc.push_entity(entity)
 								else:
 									if  ("SPECFONTSPECFONT" in font or "SPECFONT SPECFONT" in font) and len(ss[1]) > 3 and ssl[1] == ss[1]:
 										if len(ss[0]) > 2 and ssl[1] not in dict_english:
 											obvious_fossil_name[lphrase] = "species"
+											history_persent[sent.sentid][lphrase] = 1
 											entity = Entity("species", lphrase, sent.words[start:end])
 											doc.push_entity(entity)
 										
@@ -253,9 +262,11 @@ for row in get_inputs():
 								if ("SPECFONTSPECFONT" in font or "SPECFONT SPECFONT" in font):
 									if len(ss[0]) > 2 and ss[1].lower() not in dict_english:
 										obvious_fossil_name[lphrase] = "species"
+										history_persent[sent.sentid][lphrase] = 1
 										entity = Entity("species",   lphrase, sent.words[start:end])
 										doc.push_entity(entity)
 										obvious_fossil_name[ss[0].lower()] = "genus"
+										history_persent[sent.sentid][ss[0].lower()] = 1
 										entity = Entity("genus", ss[0].lower(), sent.words[start:end-1])
 										doc.push_entity(entity)
 				
@@ -275,14 +286,15 @@ for row in get_inputs():
 								inpars.append(s)
 
 
-						if len(inpars) > 0:
-							log(ssl)
+						#if len(inpars) > 0:
+						#	log(ssl)
 
 						if len(inpars) == 1 and inpars[0] in dict_fossils and 'genus' in dict_fossils[inpars[0]]:
 							if nc == 1:
 								if len(cleanup) == 1 and ss[0] != '(':
 									if cleanup[0] in dict_fossils and 'genus' in dict_fossils[cleanup[0]]:
 										obvious_fossil_name[" ".join(ssl)] = "subgenus!"
+										history_persent[sent.sentid][" ".join(ssl)] = 1
 										entity = Entity("subgenus!", " ".join(ssl), sent.words[start:end])
 										doc.push_entity(entity)
 							
@@ -291,9 +303,11 @@ for row in get_inputs():
 									if cleanup[1] in dict_species_lastword and cleanup[1] not in dict_english:
 
 										obvious_fossil_name[" ".join(ssl)] = "species"
+										history_persent[sent.sentid][" ".join(ssl)] = 1
 										entity = Entity("species", " ".join(ssl), sent.words[start:end])
 										doc.push_entity(entity)
 
+										history_persent[sent.sentid][cleanup[0]] = 1
 										obvious_fossil_name[cleanup[0]] = "genus"
 										entity = Entity("genus", cleanup[0], sent.words[start:end-1])
 										doc.push_entity(entity)
@@ -332,37 +346,56 @@ for row in get_inputs():
 					n_word = sent.words[end+1]
 					if n_word.word.lower().endswith('zone'):
 						continue
-				
-				phrase = myjoin(" ", sent.words[start:end], lambda (w) : w.word)
+
 				ner = myjoin(" ", sent.words[start:end], lambda (w) : w.ner)
 				font = myjoin(" ", sent.words[start:end], lambda (w) : w.font).replace('  ', '')
 
-				ss = phrase.split(' ')
-				isvalid = True
-				if not re.search('^[A-Z]', ss[0]): isvalid = False
-				for i in range(1, len(ss)):
-					if re.search('^[A-Z]', ss[i]) and not re.search('^[A-Z]*$', ss[i]):
-						isvalid = False
-				if isvalid == False: continue
+				for phrase in my_par_join(" ", sent.words[start:end]):
 
-				if phrase.lower() in dict_fossils:
-					if 'genus' in dict_fossils[phrase.lower()]:
-						last_genus = phrase.lower()
-			
-				if sent.words[start].word.endswith('.') and len(sent.words[start].word) == 2:
-					if phrase.lower() in possible_shortphrase:
-													
-						for longphrase in possible_shortphrase[phrase.lower()]:
-							
-							entity = Entity(obvious_fossil_name[longphrase], longphrase, sent.words[start:end])
-							doc.push_entity(entity)
-					else:
-						if len(ss) == 2 and last_genus.startswith(sent.words[start].word[0].lower()):
-							testname = (last_genus + ' ' + myjoin(" ", sent.words[(start+1):end], lambda (w) : w.word)).lower()
-							if testname in dict_fossils: 
+					#phrase = myjoin(" ", sent.words[start:end], lambda (w) : w.word)
+
+					#if 'Yin' in sent.__repr__() and '1932' in sent.__repr__():
+					#	log('###################')
+					#	log(phrase.lower())
+					#	log(phrase.lower() in obvious_fossil_name)
+					#	log(phrase.lower() in history_persent[sent.sentid])
+					#	log(sent.__repr__())
+
+					if phrase.lower() in obvious_fossil_name and phrase.lower() not in history_persent[sent.sentid]:
+						#log('~~~~~~~~~~~~~~~~~~~~~')
+						#log(phrase.lower())
+						#log(sent.__repr__())
+						entity = Entity(obvious_fossil_name[phrase.lower()], phrase.lower() , sent.words[start:end])
+						doc.push_entity(entity)
+						history_persent[sent.sentid][phrase.lower()] = 1
+						continue
+
+					ss = phrase.split(' ')
+					isvalid = True
+					if not re.search('^[A-Z]', ss[0]): isvalid = False
+					for i in range(1, len(ss)):
+						if re.search('^[A-Z]', ss[i]) and not re.search('^[A-Z]*$', ss[i]):
+							isvalid = False
+					if isvalid == False: continue
+
+					if phrase.lower() in dict_fossils:
+						if 'genus' in dict_fossils[phrase.lower()]:
+							last_genus = phrase.lower()
+				
+					if sent.words[start].word.endswith('.') and len(sent.words[start].word) == 2:
+						if phrase.lower() in possible_shortphrase:
+														
+							for longphrase in possible_shortphrase[phrase.lower()]:
 								
-								entity = Entity(dict_fossils[testname], testname.lower(), sent.words[start:end])
+								entity = Entity(obvious_fossil_name[longphrase], longphrase, sent.words[start:end])
 								doc.push_entity(entity)
+						else:
+							if len(ss) == 2 and last_genus.startswith(sent.words[start].word[0].lower()):
+								testname = (last_genus + ' ' + myjoin(" ", sent.words[(start+1):end], lambda (w) : w.word)).lower()
+								if testname in dict_fossils: 
+									
+									entity = Entity(dict_fossils[testname], testname.lower(), sent.words[start:end])
+									doc.push_entity(entity)
 
 
 	def format(e, seq, year):
