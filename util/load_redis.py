@@ -1,5 +1,7 @@
 
 
+# to start redis, http://redis.io/topics/quickstart is your friend
+
 import redis
 locs = redis.StrictRedis(host='localhost', port=6379, db=0)
 pars = redis.StrictRedis(host='localhost', port=6379, db=1)
@@ -17,7 +19,7 @@ for _file in os.listdir(BASE_FOLDER + '/dicts'):
 	if not _file.startswith('geonames'): continue
 	for l in open(BASE_FOLDER + '/dicts/' + _file):
 		if progress % 100000 == 0:
-			log(progress)
+			print progress
 		progress = progress + 1
 		(id, ent, rank, names, parents) = l.rstrip('\n').split('\t')
 		rank = rank
