@@ -32,11 +32,9 @@ for _file in os.listdir(BASE_FOLDER + '/dicts'):
 			name = name.lower()
 
 			if locs.get(name) == None:
-				locs.set(name, {})
+				locs.set(name, '')
 
-			a = locs.get(name) 
-			a[id] = "1"
-			locs.set(name, a)
+			locs.set(name, locs.get(name) + ' ' + id)
 			added = True
 			
 		if added == True:
