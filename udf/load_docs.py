@@ -20,6 +20,7 @@ from ext.op.superviser_occurrences import *
 superviser = OccurrencesSuperviser()
 superviser.loadDict()
 
+ct = 0
 for row in get_inputs():
 	docid = row["docids.docid"]
 	title = row["docids.title"]
@@ -54,6 +55,12 @@ for row in get_inputs():
 		ans = superviser.teach_me(doc.docid, rel.type, rel.entity1, rel.entity2)
 		fo.write(json.dumps({"is_correct":ans,"docid":doc.docid, "type":rel.type, "eid1":rel.entity1.eid, "eid2":rel.entity2.eid, "entity1":rel.entity1.entity.decode('ascii', 'ignore'), "entity2":rel.entity2.entity.decode('ascii', 'ignore'), "features":rel.type + "-" + rel.prov})+"\n")
 	fo.close()
+
+	ct = ct + 1
+	if ct % 10 == 0:
+		import gc
+		a = gc.collect()
+		log("GC'ed")
 
 	#print json.dumps({'docid':docid, 'document':serialize(doc)})
 

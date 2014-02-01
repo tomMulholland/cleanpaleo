@@ -35,12 +35,13 @@ def normalize_docids(DOCID):
 	TDOCID = DOCID.replace('.task', '')
 	TDOCID = TDOCID.replace('NLPRS_jan20_overlap_21.', '')
 	TDOCID = TDOCID.replace('NLPRS_jan20_overlap_20.', '')
+	TDOCID = TDOCID.replace('NLPRS_jan20_overlap_22.', '')
 	return TDOCID
 
 for docid in os.listdir(INPUT_FOLDER):
 	if docid.startswith('.'): continue
 	
-	#TDOCID = normalize_docids(docid)
+	TDOCID = normalize_docids(docid)
 	#if TDOCID not in usefuldocs:
 	#	continue
 

@@ -118,6 +118,7 @@ class OccurrencesSuperviser:
                     #log(e1.entity + "F+++F" + e2.entity)
                     ans = True
 
+
             #if ans == None: ans = False 
             return ans
 
