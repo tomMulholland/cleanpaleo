@@ -5,6 +5,21 @@ import codecs
 from helper.easierlife import *
 from ext.doc.Document import *
 
+import ext_entity_formation
+
+import ext_entity_fossil
+
+import ext_entity_interval
+
+import ext_entity_location
+
+import ext_relation_candidates
+
+from ext.op.superviser_occurrences import *
+
+superviser = OccurrencesSuperviser()
+superviser.loadDict()
+
 for row in get_inputs():
 	docid = row["docids.docid"]
 	title = row["docids.title"]
@@ -14,7 +29,33 @@ for row in get_inputs():
 	doc.parse_doc(folder)
 	doc.title = title
 
-	print json.dumps({'docid':docid, 'document':serialize(doc)})
+	ext_entity_formation.do(doc)
+	ext_entity_fossil.do(doc)
+	ext_entity_interval.do(doc)
+	ext_entity_location.do(doc)
+
+	finalize_entities(doc)
+
+	ext_relation_candidates.do(doc)
+
+	fo = open(BASE_FOLDER + '/tmp/' + doc.docid + ".ent", 'w')
+	for sentid in doc.entities:
+		for entity in doc.entities[sentid]:
+			fo.write(json.dumps({'docid':doc.docid, 'type':entity.type, 'eid':entity.eid, 
+				'entity':entity.entity, 'author_year':entity.author_year, 'content': ''}) + "\n")
+			
+	for entity in doc.titleentities:
+		fo.write(json.dumps({'docid':doc.docid, 'type':entity.type, 'eid':entity.eid, 
+				'entity':entity.entity, 'author_year':entity.author_year, 'content': ''}) + "\n")
+	fo.close()
+
+	fo = open(BASE_FOLDER + '/tmp/' + doc.docid + ".rel", 'w')
+	for rel in doc.relations:
+		ans = superviser.teach_me(doc.docid, rel.type, rel.entity1, rel.entity2)
+		fo.write(json.dumps({"is_correct":ans,"docid":doc.docid, "type":rel.type, "eid1":rel.entity1.eid, "eid2":rel.entity2.eid, "entity1":rel.entity1.entity.decode('ascii', 'ignore'), "entity2":rel.entity2.entity.decode('ascii', 'ignore'), "features":rel.type + "-" + rel.prov})+"\n")
+	fo.close()
+
+	#print json.dumps({'docid':docid, 'document':serialize(doc)})
 
 
 """

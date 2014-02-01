@@ -53,7 +53,7 @@ class SectionHeaderRealtionExtraction:
             nextsentid = sentid + 1
             if nextsentid < len(doc.sents):
                 nextsent = doc.sents[nextsentid]
-                if nextsent.words[0].centered == True and (nextsent.__repr__().startswith('Fig')):
+                if (nextsent.words[0].centered == True or nextsent.words[0].followed == True) and (nextsent.__repr__().startswith('Fig')):
                     isnextgood = True
             flag_start_context = True
 
@@ -72,17 +72,34 @@ class SectionHeaderRealtionExtraction:
                         if w == firstentity.words[0]: break
                         if w.box.left >= firstentity.words[0].box.right and w.centered == False:
                             allleft = False
-                    if (firstentity.words[0].centered == True or isnextgood == True) and len(sent.words) < 20 and allleft == True:
+
+                    #log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                    #log(doc.sents[sentid].__repr__().lower())
+                    #log(firstentity)
+                    #log(firstentity.words[0].centered)
+                    #log(firstentity.words[0].followed)
+                    #log(sent.words < 20)
+                    #log(allleft)
+
+                    if (firstentity.words[0].centered == True or isnextgood == True or firstentity.words[0].followed == True) and len(sent.words) < 20 and allleft == True:
 
                         goodsents.append({"sentid":sentid, "isgood":True})
                     else:
-                        goodsents.append({"sentid":sentid, "isgood":False})
+                        if sent.words[0].word.lower() in ranks:
+                            goodsents.append({"sentid":sentid, "isgood":True})
+                        else:
+                            goodsents.append({"sentid":sentid, "isgood":False})
+
+
+                        
                 else:
                     goodsents.append({"sentid":sentid, "isgood":False})
         
         for i in range(0, len(goodsents)):
             sentid = goodsents[i]["sentid"]
             isgood = goodsents[i]["isgood"]
+
+
 
             if isgood == True:
 

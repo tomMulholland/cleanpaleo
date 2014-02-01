@@ -87,8 +87,11 @@ for _file in os.listdir(BASE_FOLDER + '/dicts'):
 
 MAXPHRASELEN = 3
 
-for row in get_inputs():
-	doc = deserialize(row["documents.document"])
+#for row in get_inputs():
+
+def do(doc):
+
+	#doc = deserialize(row["documents.document"])
 
 	MAXPHRASELEN = 3
 
@@ -296,6 +299,15 @@ for row in get_inputs():
 					for i in range(start, end):
 						history[i] = 1
 
-	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
-	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
+	#print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
+	#print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
+
+
+#for row in get_inputs():
+#	doc = deserialize(row["documents.document"])
+#	do(doc)
+#
+#	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
+#	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
+
 

@@ -108,8 +108,10 @@ ranks = {"subgenus":3,"genus":4,"subtribe":5,"tribe":6,"subfamily":7,"family":8,
 
 MAXPHRASELEN = 7
 
-for row in get_inputs():
-	doc = deserialize(row["documents.document"])
+#for row in get_inputs():
+#	doc = deserialize(row["documents.document"])
+
+def do(doc):
 	
 	obvious_fossil_name = {}
 	candiate_new_fossil_name = {}
@@ -481,10 +483,17 @@ for row in get_inputs():
 	#log(doc.entities)
 	#log(doc.titleentities)
 
-	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
-	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
+	#print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
+	#print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
 
 
+
+#for row in get_inputs():
+#	doc = deserialize(row["documents.document"])
+#	do(doc)
+#
+#	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
+#	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
 
 
 

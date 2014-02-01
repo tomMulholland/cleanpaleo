@@ -18,8 +18,9 @@ from ext.op.rel_listext import *
 
 from ext.op.superviser_occurrences import *
 
-superviser = OccurrencesSuperviser()
-superviser.loadDict()
+#superviser = OccurrencesSuperviser()
+#superviser.loadDict()
+#ans = superviser.teach_me(doc.docid, rel.type, rel.entity1, rel.entity2)
 
 ranks = {"subspecies":1,"species":2,"subgenus":3,"genus":4,"subtribe":5,"tribe":6,"subfamily":7,"family":8,"group":9,"superfamily":10,"infraorder":11,"suborder":12,"order":13,"superorder":14,"infraclass":15,"subclass":16,"class":17,"superclass":18,"subphylum":19,"phylum":20,"superphylum":21,"subkingdom":22,"kingdom":23,"superkingdom":24}
 for r in ranks.keys():
@@ -159,9 +160,11 @@ sectionrel.loadDict()
 #jointrel = JointFormationRelationExtractor()
 #jointrel.loadDict()
 
-for row in get_inputs():
+#for row in get_inputs():
 
-	doc = assemble_docs(row)
+def do(doc):
+
+	#doc = assemble_docs(row)
 
 	extract_candidates_samesent(doc)
 
@@ -176,9 +179,9 @@ for row in get_inputs():
 	title_rel.extract(doc)
 
 
-	for rel in doc.relations:
-		ans = superviser.teach_me(doc.docid, rel.type, rel.entity1, rel.entity2)
-		print json.dumps({"is_correct":ans,"docid":doc.docid, "type":rel.type, "eid1":rel.entity1.eid, "eid2":rel.entity2.eid, "entity1":rel.entity1.entity.decode('ascii', 'ignore'), "entity2":rel.entity2.entity.decode('ascii', 'ignore'), "features":rel.type + "-" + rel.prov})
+	#for rel in doc.relations:
+	#	ans = superviser.teach_me(doc.docid, rel.type, rel.entity1, rel.entity2)
+	#	print json.dumps({"is_correct":ans,"docid":doc.docid, "type":rel.type, "eid1":rel.entity1.eid, "eid2":rel.entity2.eid, "entity1":rel.entity1.entity.decode('ascii', 'ignore'), "entity2":rel.entity2.entity.decode('ascii', 'ignore'), "features":rel.type + "-" + rel.prov})
 		
 
 

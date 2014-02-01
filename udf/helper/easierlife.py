@@ -32,6 +32,35 @@ IS_SMALL_CORPUS = True
 SMALL_CORPUS_FOLDER = BASE_FOLDER + "/input"
 
 
+def finalize_entities(doc):
+
+	for sentid in doc.entities:
+		toremove = []
+		for e1 in doc.entities[sentid]:
+			for e2 in doc.entities[sentid]:
+				if e1 == e2: continue
+				if e1.type == e2.type: continue
+				if e1.words == e2.words:
+					if e1.type != 'LOCATION' and e1.type != 'INTERVAL' and e1.type != 'ROCK':
+						toremove.append(e1)
+				if e1.phrase in e2.phrase:
+					if e1.type == 'LOCATION' and e2.type == 'ROCK':
+						toremove.append(e1)
+					if e2.phrase not in e1.phrase and e1.type in ['genus', 'subgenus', 'subgenus!'] and e2.type.startswith('subgen'):
+						toremove.append(e1)
+					if e1.type == 'LOCATION' and e2.type == 'INTERVAL':
+						toremove.append(e2)
+	
+		newlist = []
+		for e in doc.entities[sentid]:
+			if e in toremove: continue
+			newlist.append(e)
+		doc.entities[sentid] = newlist
+
+	doc.assign_ids()
+	return doc
+
+
 def assemble_docs(row):
 	doc = deserialize(row["documents.t0.document"])
 	ent_types = row[".entities_types"]

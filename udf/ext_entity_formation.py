@@ -30,9 +30,9 @@ for l in open(BASE_FOLDER + '/dicts/english.stop', 'r'):
 MAXPHRASELEN = 5
 
 
-for row in get_inputs():
-	doc = deserialize(row["documents.document"])
 
+def do(doc):
+	
 	good_names = {}
 	for sent in doc.sents:
 		history = {}
@@ -134,7 +134,11 @@ for row in get_inputs():
 						doc.push_entity(entity)
 
 
-	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
-	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
+#for row in get_inputs():
+#	doc = deserialize(row["documents.document"])
+#	do(doc)
+#
+#	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.entities), 'type': 'BODY'})
+#	print json.dumps({'docid':doc.docid, 'entities':serialize(doc.titleentities), 'type': 'TITLE'})
 
 

@@ -6,6 +6,7 @@ from helper.easierlife import *
 
 from multiprocessing import *
 
+
 INPUT_FOLDER = BASE_FOLDER + "/input"
 
 
