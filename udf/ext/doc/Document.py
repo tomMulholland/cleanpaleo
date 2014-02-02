@@ -174,40 +174,41 @@ class Document:
             donothing = False
 
 
-        line1 = 0
-        line2 = 0
-        for l in open(filepath + "/input.malt"):
-            line1 = line1 + 1
+        try:
+            line1 = 0
+            line2 = 0
+            for l in open(filepath + "/input.malt"):
+                line1 = line1 + 1
 
-        for l in open(filepath + "/input.raw"):
-            line2 = line2 + 1
+            for l in open(filepath + "/input.raw"):
+                line2 = line2 + 1
 
-        if line1 == line2:
+            if line1 == line2:
 
-            f1 = open(filepath + "/input.raw")
-            f2 = open(filepath + "/input.malt")
-
-            line1 = f1.readline()
-            line2 = f2.readline()
-
-            while line1 != "":
-
-                ss = line1.rstrip().split('\t')
-                if len(ss) < 3: 
-                    line1 = f1.readline()
-                    line2 = f2.readline()
-                    continue
-                (insent_id, word, pos, ner, lemma, deppath, deppar, sentid, box) = ss
-
-                ss2 = line2.rstrip().split('\t')
-                (a, b, c, d, d, d, deppar, deppath, d, d) = ss2
-
-                self.push_word(Word(insent_id, word, pos, ner, lemma, deppath, deppar, sentid, Box("")))
-
-                #log(deppar + "," + deppath)
+                f1 = open(filepath + "/input.raw")
+                f2 = open(filepath + "/input.malt")
 
                 line1 = f1.readline()
                 line2 = f2.readline()
+
+                while line1 != "":
+
+                    ss = line1.rstrip().split('\t')
+                    if len(ss) < 3: 
+                        line1 = f1.readline()
+                        line2 = f2.readline()
+                        continue
+                    (insent_id, word, pos, ner, lemma, deppath, deppar, sentid, box) = ss
+
+                    ss2 = line2.rstrip().split('\t')
+                    (a, b, c, d, d, d, deppar, deppath, d, d) = ss2
+
+                    self.push_word(Word(insent_id, word, pos, ner, lemma, deppath, deppar, sentid, Box("")))
+
+                    #log(deppar + "," + deppath)
+
+                    line1 = f1.readline()
+                    line2 = f2.readline()
 
 
     def push_word(self, word):
