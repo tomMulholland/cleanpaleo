@@ -103,11 +103,20 @@ class SectionHeaderRealtionExtraction:
 
             if isgood == True:
 
+                nnn = 0
+                isvalid = True
                 for e1 in doc.entities[sentid]:
-                    for e2 in doc.entities[sentid]:
-                        if e1.type in ranks and e2.type in ranks:
-                            if ranks[e1.type] < ranks[e2.type] and 'species' not in e1.type and e1.type.replace('!', '') in doc.sents[sentid].__repr__().lower() and e2.type.replace('!', '') in doc.sents[sentid].__repr__().lower() :
-                                doc.push_relation(Relation("TAXONOMY", e1, e2, "[SYSTEMATIC PALEONTOLOGY SECTION HEADER TYPE 1]"))
+                    if 'species' not in e1.type:
+                        isvalid = False
+                    if e1.type in ranks:
+                        nnn = nnn + 1
+
+                if nnn < 6 and isvalid == True:
+                    for e1 in doc.entities[sentid]:
+                        for e2 in doc.entities[sentid]:
+                            if e1.type in ranks and e2.type in ranks:
+                                if ranks[e1.type] < ranks[e2.type] and 'species' not in e1.type and e1.type.replace('!', '') in doc.sents[sentid].__repr__().lower() and e2.type.replace('!', '') in doc.sents[sentid].__repr__().lower() :
+                                    doc.push_relation(Relation("TAXONOMY", e1, e2, "[SYSTEMATIC PALEONTOLOGY SECTION HEADER TYPE 1]"))
 
                 for j in range(i+1, len(goodsents)):
                     sentid2 = goodsents[j]["sentid"]
