@@ -28,7 +28,7 @@ import zlib, base64
 BASE_FOLDER, throwaway = os.path.split(os.path.realpath(__file__))
 BASE_FOLDER = BASE_FOLDER + "/../../"
 
-IS_SMALL_CORPUS = True
+IS_SMALL_CORPUS = False
 SMALL_CORPUS_FOLDER = BASE_FOLDER + "/input"
 
 

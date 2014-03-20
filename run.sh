@@ -1,16 +1,17 @@
 #! /bin/bash
 
-export DEEPDIVE_HOME=`cd $(dirname $0)/../..; pwd`
-export PALEO_HOME="$DEEPDIVE_HOME/app/paleo"
+export DEEPDIVE_HOME="/lfs/madmax3/0/czhang/deepdive"
+export PALEO_HOME="/lfs/madmax3/0/czhang/cleanpaleo"
 
+export PYPY_GC_MAX=20GB
 # Database Configuration
-export DB_NAME=deepdive_small2
-export DB_USER=dennybritz
+export DB_NAME=deepdive_large3
+export DB_USER=czhang
 #Password is set via the PGPASSWORD environment variable
-export DB_PASSWORD=
-export DB_PORT=5432
+export DB_PASSWORD=bB19871121
+export DB_PORT=5431
 
 cd $DEEPDIVE_HOME
 
-$PALEO_HOME/prepare_data.sh
-JAVA_OPTS="-Xmx4g" SBT_OPTS="-Xmx4g" sbt "run -c $PALEO_HOME/application.conf"
+#$PALEO_HOME/prepare_data.sh
+env /lfs/madmax3/0/czhang/software/sbt/bin/sbt "run -c $PALEO_HOME/application.conf"

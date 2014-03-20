@@ -7,8 +7,13 @@ from helper.easierlife import *
 from multiprocessing import *
 
 
-INPUT_FOLDER = BASE_FOLDER + "/input"
+#INPUT_FOLDER = BASE_FOLDER + "/Paleo400K"
 
+#INPUT_FOLDER = BASE_FOLDER + "/NLPRS_jan20_overlap.22"
+
+INPUT_FOLDER = BASE_FOLDER + "/TORUNEXT_feb15"
+
+#INPUT_FOLDER = BASE_FOLDER + "/TORUNEXT_JOURNAL"
 
 titles = {}
 usefuldocs = {}
@@ -28,6 +33,7 @@ try:
 	for l in open(BASE_FOLDER + '/mapped_pdfs.txt'):
 		(refid, id) = l.rstrip().split('\t')
 		usefuldocs[id.replace('georefpdfs.', '')] = 1
+
 except:
 	donothing = True
 

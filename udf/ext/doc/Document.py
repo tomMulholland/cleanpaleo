@@ -130,7 +130,8 @@ class Document:
             self.title = ""
 
         try:
-            for l in open(filepath + "/input.text"):
+            #for l in open(filepath + "/input.text"):
+            for l in open(filepath + "/input.raw"):  
                 ss = l.rstrip().split('\t')
                 if len(ss) < 3: continue
                 (insent_id, word, pos, ner, lemma, deppath, deppar, sentid, box) = ss
@@ -180,12 +181,12 @@ class Document:
             for l in open(filepath + "/input.malt"):
                 line1 = line1 + 1
 
-            for l in open(filepath + "/input.raw"):
+            for l in open(filepath + "/input.text"):
                 line2 = line2 + 1
 
             if line1 == line2:
 
-                f1 = open(filepath + "/input.raw")
+                f1 = open(filepath + "/input.text")
                 f2 = open(filepath + "/input.malt")
 
                 line1 = f1.readline()
@@ -203,12 +204,14 @@ class Document:
                     ss2 = line2.rstrip().split('\t')
                     (a, b, c, d, d, d, deppar, deppath, d, d) = ss2
 
-                    self.push_word(Word(insent_id, word, pos, ner, lemma, deppath, deppar, sentid, Box("")))
+                    self.push_word(Word(insent_id, word, pos, ner, lemma, deppath, deppar, sentid, Box(box)))
 
                     #log(deppar + "," + deppath)
 
                     line1 = f1.readline()
                     line2 = f2.readline()
+        except:
+            donothing = True
 
 
     def push_word(self, word):

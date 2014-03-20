@@ -26,6 +26,10 @@ for row in get_inputs():
 	title = row["docids.title"]
 	folder= row["docids.folder"]
 
+	#import os.path
+	#if os.path.isfile(BASE_FOLDER + '/tmp/' + docid + ".ent"):
+	#	continue
+
 	doc = Document(docid)
 	doc.parse_doc(folder)
 	doc.title = title

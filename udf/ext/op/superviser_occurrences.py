@@ -117,7 +117,9 @@ class OccurrencesSuperviser:
                 if e2.entity in self.kb_fossil_formation[e1.entity]:
                     #log(e1.entity + "F+++F" + e2.entity)
                     ans = True
-
+ 
+                else:
+                    ans = False
 
             #if ans == None: ans = False 
             return ans

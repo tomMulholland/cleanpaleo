@@ -16,6 +16,9 @@ for row in get_inputs():
 		if kk != 'id' and kk != 'features':
 			o[kk] = row[key]
 
+	if o["type"] == 'FORMATION' and o["is_correct"] == False:
+		o["is_correct"] = None
+
 	print json.dumps(o)
 
 
